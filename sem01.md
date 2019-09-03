@@ -119,11 +119,10 @@ listening on lo, link-type EN10MB (Ethernet), capture size 262144 bytes
 12:29:41.479034 IP6 ::1.8080 > ::1.41120: Flags [F.], seq 7, ack 8, win 342, options [nop,nop,TS val 7167657 ecr 7167657], length 0
 12:29:41.479081 IP6 ::1.41120 > ::1.8080: Flags [.], ack 8, win 342, options [nop,nop,TS val 7167657 ecr 7167657], length 0
 ```
-* Почему обман:  
-  * `NAT`
-  * `keepalive`
-  * таймауты
-  * буферы на отправку и приём
+* Почему обман:
+  * таймауты на прокси и конечных узлах (NAT), `keepalive`
+  * буферы на отправку и приём на стороне ядра
+  * установка соединения на стороне ядра
   
 #### Полезные ссылки
 * [tcpdump](https://danielmiessler.com/study/tcpdump/)
