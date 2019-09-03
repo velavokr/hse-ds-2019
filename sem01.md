@@ -67,9 +67,9 @@ TBD
 * Состоит из
   * 16 bit `src port`
   * 16 bit `dst port`
-  * 32 bit `seq`
-  * 32 bit `ack` - если есть флаг `ACK`
-  * 4 bit `data offset`
+  * 32 bit `seq` - номер последовательности: все байты данных + 1 для SYN и 1 для FIN.
+  * 32 bit `ack` - если есть флаг `ACK`. 1 + последний полученный `seq`.
+  * 4 bit `data offset` - размер в `uint32`
   * 3 bit `reserved`
   * 9 bit `flags`:
     * `NS` - реально не используется
@@ -87,5 +87,17 @@ TBD
   * 0-320 bit `options`
     * `MSS`
     * `window scaling` (0-14)
-    * `selective acknowledgments`
-    * `timestamp` + `echo timestamp`
+    * `selective acknowledgments` - 1-4 интервала.
+    * `timestamp` + `echo timestamp` - рандомное начальное значение, инкремент примерно 1ms.
+* Стейт-машина
+  ![TCP стейт-машина](https://upload.wikimedia.org/wikipedia/en/5/57/Tcp_state_diagram.png)
+* Почему обман:  
+  * `NAT`
+  * `keepalive`
+  * таймауты
+  * буферы на отправку и приём
+#### Полезные ссылки
+* [tcpdump](https://danielmiessler.com/study/tcpdump/)
+* [socat](https://medium.com/@copyconstruct/socat-29453e9fc8a6)
+* [netcat](https://kapeli.com/cheat_sheets/Netcat.docset/Contents/Resources/Documents/index)
+* [curl](https://devhints.io/curl)
