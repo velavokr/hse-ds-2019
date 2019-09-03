@@ -91,13 +91,35 @@ TBD
     * `timestamp` + `echo timestamp` - рандомное начальное значение, инкремент примерно 1ms.
 * Стейт-машина
   ![TCP стейт-машина](https://upload.wikimedia.org/wikipedia/en/5/57/Tcp_state_diagram.png)
+* Пример
+```bash
+[console 1]$ tcpdump -n -i lo ip6 and host ::1 and tcp and port 8080
+tcpdump: verbose output suppressed, use -v or -vv for full protocol decode
+listening on lo, link-type EN10MB (Ethernet), capture size 262144 bytes
+[console 2]$ nc -l ::1 8080
+[console 3]$ nc ::1 8080
+```
+```
+12:29:30.839127 IP6 ::1.41120 > ::1.8080: Flags [S], seq 1966290566, win 43690, options [mss 65476,sackOK,TS val 7157002 ecr 0,nop,wscale 7], length 0
+12:29:30.839175 IP6 ::1.8080 > ::1.41120: Flags [S.], seq 2764958068, ack 1966290567, win 43690, options [mss 65476,sackOK,TS val 7157002 ecr 7157002,nop,wscale 7], length 0
+12:29:30.839210 IP6 ::1.41120 > ::1.8080: Flags [.], ack 1, win 342, options [nop,nop,TS val 7157003 ecr 7157002], length 0
+12:29:33.025852 IP6 ::1.41120 > ::1.8080: Flags [P.], seq 1:7, ack 1, win 342, options [nop,nop,TS val 7159189 ecr 7157002], length 6: HTTP
+12:29:33.025892 IP6 ::1.8080 > ::1.41120: Flags [.], ack 7, win 342, options [nop,nop,TS val 7159189 ecr 7159189], length 0
+12:29:37.385552 IP6 ::1.8080 > ::1.41120: Flags [P.], seq 1:7, ack 7, win 342, options [nop,nop,TS val 7163556 ecr 7159189], length 6: HTTP
+12:29:37.385591 IP6 ::1.41120 > ::1.8080: Flags [.], ack 7, win 342, options [nop,nop,TS val 7163556 ecr 7163556], length 0
+12:29:41.478883 IP6 ::1.41120 > ::1.8080: Flags [F.], seq 7, ack 7, win 342, options [nop,nop,TS val 7167657 ecr 7163556], length 0
+12:29:41.479034 IP6 ::1.8080 > ::1.41120: Flags [F.], seq 7, ack 8, win 342, options [nop,nop,TS val 7167657 ecr 7167657], length 0
+12:29:41.479081 IP6 ::1.41120 > ::1.8080: Flags [.], ack 8, win 342, options [nop,nop,TS val 7167657 ecr 7167657], length 0
+```
 * Почему обман:  
   * `NAT`
   * `keepalive`
   * таймауты
   * буферы на отправку и приём
+  
 #### Полезные ссылки
 * [tcpdump](https://danielmiessler.com/study/tcpdump/)
+* [tshark](https://hackertarget.com/tshark-tutorial-and-filter-examples/)
 * [socat](https://medium.com/@copyconstruct/socat-29453e9fc8a6)
 * [netcat](https://kapeli.com/cheat_sheets/Netcat.docset/Contents/Resources/Documents/index)
 * [curl](https://devhints.io/curl)
