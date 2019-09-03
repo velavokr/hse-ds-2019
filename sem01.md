@@ -7,8 +7,8 @@
 * [Designing Data-Intensive Applications](https://dataintensive.net/)
 * [Google SRE books](https://landing.google.com/sre/books/)
 
-## Надежная передача по ненадежному каналу, протокол TCP
-### Абстракция
+# Надежная передача по ненадежному каналу, протокол TCP
+### Абстракция сети
 * Каждая пара процессов соединена двунаправленным каналом
 * У каждого сообщения известен отправитель и получатель
 * В случае arbitrary / byzantine fault считаем, что можем положиться на криптографические методы валидации
@@ -52,10 +52,18 @@
   1. **No dupliction**.
   1. **No creation**.
   1. **FIFO delivery**. Процесс `q` получит сообщения от процесса `p` в том же порядке, в котором `p` их отправил.
-#### Failure detectors
-TBD
-### Реализация
-#### UDP
+### Failure detectors
+Абстракция над временем
+#### PerfectFailureDetector
+* Свойства
+  1. **Strong completeness**. Рано или поздно все некорректные процессы перестанут считаться корректными (всегда будут под подозрением).
+  1. **Strong accuracy**. Если процесс попал под подозрение, значит он некорректный.
+#### EventuallyPerfectFailureDetector
+* Свойства
+  1. **Strong completeness**.
+  1. **Eventual strong accuracy**. Рано или поздно наступит момент, когда ни один корректный процесс не будет под подозрением.
+## Реализация
+### UDP
 * Состоит из 
   * 16 bit `src port`
   * 16 bit `dst port`
