@@ -1,6 +1,3 @@
-## Орг. часть
-* Чат группы https://t.me/joinchat/A08TVFjhH1r602Yi0Nl5FA
-
 ## Литература
 * [Introduction to Reliable and Secure Distributed Programming 2nd Edition](https://www.amazon.com/Introduction-Reliable-Secure-Distributed-Programming/dp/3642152597)
 * [Notes on Theory of Distributed Systems](http://www.cs.yale.edu/homes/aspnes/classes/465/notes.pdf)
